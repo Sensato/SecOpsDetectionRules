@@ -23,8 +23,10 @@ rule whoami_execution {
     rule_name = "Whoami Execution"
     type = "hunt"
     data_source = "microsoft sysmon, microsoft windows events"
-    tactic = "TA0007"
-    technique = "T1033"
+    mitre_attack_tactic = "Discovery"
+    mitre_attack_technique = "System Owner/User Discovery"
+    mitre_attack_url = "https://attack.mitre.org/techniques/T1033/"
+    mitre_attack_version = "v13.1"
     platform = "Windows"
     severity = "Info"
     priority = "Info"
@@ -35,6 +37,9 @@ rule whoami_execution {
 
   outcome:
     $risk_score = 10
+    $mitre_attack_tactic = "Discovery"
+    $mitre_attack_technique = "System Owner/User Discovery"
+    $mitre_attack_technique_id = "T1033"
     // added to populate alert graph with additional context
     $principal_hostname = $process.principal.hostname
     $principal_process_pid = $process.principal.process.pid
